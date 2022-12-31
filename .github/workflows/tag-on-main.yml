@@ -20,9 +20,9 @@ jobs:
         uses: actions/setup-go@v3
       -
         name: Install svu
-        run: go install github.com/caarlos0/svu@latest
+        run: GOBIN=$(realpath tools) go install github.com/caarlos0/svu@latest
       -
         name: Bump version and push tag
         run: |
-          git tag $(svu patch)
-          git push origin $(svu c)
+          git tag $(./tools/svu patch)
+          git push origin $(./tools/svu c)
